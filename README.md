@@ -15,7 +15,7 @@ react-native link react-native-fbsdk
 **Note** Please install `Android Studio` to manage Android project https://developer.android.com/studio/index.html
 
 1. Open your Android project in Android Studio. The Android project folder is located at `[YourApp]/android`, where `[YourApp]` is the name of your application.
-2. Open the `MainApplication.java` file. This file is located in the /[YourApp]/android/app/src/main/java/com/[YourApp]/ subfolder of your project.
+2. Open the `MainApplication.java` file. This file is located in the `/[YourApp]/android/app/src/main/java/com/[YourApp]/` subfolder of your project.
 
 ![Image](http://i.imgur.com/PYU5vqE.png)
 
@@ -73,19 +73,27 @@ import android.content.Intent;
 
 8. Provide the ability to receive application events by overriding the `onActivityResult()` method.
 
+```
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
 }
+```
 
 ![Image](http://i.imgur.com/3ySneUj.png)
 
-9. **This step is very important, this step will register application id with FBSKD**
+9. **This step is very important, you need register `application id` with FBSKD**
   - Click `Create new App` https://developers.facebook.com/docs/facebook-login/android and keep this open b/c you will need `facebook_app_id` for your app. It's unique for each app.
   - Enter your android `Display Name` in the popup by your `ApplicationId`, you can find in this path `[YourApp]/android/app/build.gradle` and find `applicationId`
+    
+  - Get `ApplicationId`
   
   ![Image](http://i.imgur.com/1IVHX89.png)
+  
+  - Enter Display Name on FB 
+  
+  ![Image](http://i.imgur.com/vHkutx1.png)
   
 10. Add the Maven Central Repository to `build.gradle` before dependencies: `[YourApp]/android/build.gradle`
 
