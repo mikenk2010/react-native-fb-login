@@ -134,3 +134,33 @@ compile "com.facebook.android:facebook-android-sdk:[4,5)"
 react-native run-android
 ```
 
+16. Add FB login button
+
+```
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+} = FBSDK;
+```
+
+```
+<View>
+  <LoginButton
+    publishPermissions={["publish_actions"]}
+    onLoginFinished={
+      (error, result) => {
+        if (error) {
+          alert("Login failed with error: " + result.error);
+        } else if (result.isCancelled) {
+          alert("Login was cancelled");
+        } else {
+          alert("Login was successful with permissions: " + result.grantedPermissions)
+        }
+      }
+    }
+    onLogoutFinished={() => alert("User logged out")}/>
+</View>
+```
+
+- Refresh app and enjoy your day!
+
