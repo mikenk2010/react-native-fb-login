@@ -137,29 +137,59 @@ react-native run-android
 16. Add FB login button
 
 ```
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
+  AccessToken
 } = FBSDK;
-```
 
-```
-<View>
-  <LoginButton
-    publishPermissions={["publish_actions"]}
-    onLoginFinished={
-      (error, result) => {
-        if (error) {
-          alert("Login failed with error: " + result.error);
-        } else if (result.isCancelled) {
-          alert("Login was cancelled");
-        } else {
-          alert("Login was successful with permissions: " + result.grantedPermissions)
-        }
-      }
-    }
-    onLogoutFinished={() => alert("User logged out")}/>
-</View>
+export default class lab2 extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+        <LoginButton
+          publishPermissions={["publish_actions"]}
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                alert("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                alert("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    alert(data.accessToken.toString())
+                  }
+                )
+              }
+            }
+          }
+          onLogoutFinished={() => alert("logout.")}/>
+      </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
+
+AppRegistry.registerComponent('lab2', () => lab2);
 ```
 
 - Refresh app and enjoy your day!
