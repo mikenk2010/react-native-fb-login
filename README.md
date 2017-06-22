@@ -194,3 +194,7 @@ AppRegistry.registerComponent('lab2', () => lab2);
 
 - Refresh app and enjoy your day!
 
+![Image|200](http://i.imgur.com/imjB68F.png)
+![Image|200](http://i.imgur.com/YZKePQQ.png)
+
+    backgroundColor: '#F5FCFF',
